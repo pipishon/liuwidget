@@ -51,30 +51,61 @@ class LIY_Widget_Friedns extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		$instance['title'] = strip_tags($new_instance['title']);
-		if ( current_user_can('unfiltered_html') )
-			$instance['text'] =  $new_instance['text'];
-		else
-			$instance['text'] = stripslashes( wp_filter_post_kses( addslashes($new_instance['text']) ) ); // wp_filter_post_kses() expects slashed
-		$instance['filter'] = ! empty( $new_instance['filter'] );
+		$instance['link1'] = strip_tags($new_instance['link1']);
+		$instance['link2'] = strip_tags($new_instance['link2']);
+		$instance['link3'] = strip_tags($new_instance['link3']);
+		$instance['img1'] = $new_instance['img1'];
+		$instance['img2'] = $new_instance['img2'];
+		$instance['img3'] = $new_instance['img3'];
 		return $instance;
 	}
 
 	public function form( $instance ) {
-		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'text' => '' ) );
+		$instance = wp_parse_args( (array) $instance, array( 
+			'link1' => '', 
+			'link2' => '', 
+			'link3' => '', 
+			'img1' => '', 
+			'img2' => '', 
+			'img3' => '', 
+			'title' => '', 
+		) );
 		$title = strip_tags($instance['title']);
-		$text = esc_textarea($instance['text']);
-		$attachments = get_posts( array( 'include' => '', 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ACS', 'orderby' => 'menu_order ID' ) );
+
 
 
 ?>
 		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
-		<button class="liywidget-frame-show">Add image</button>
-<input class="img-ids" val="10" type="hidden" />
-		
-		<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>"><?php echo $text; ?></textarea>
+<table id="liuwidget-table">
+	<tr>
+		<td><a class="add-image-button" href="#" id="link1">
 
-		<p><input id="<?php echo $this->get_field_id('filter'); ?>" name="<?php echo $this->get_field_name('filter'); ?>" type="checkbox" <?php checked(isset($instance['filter']) ? $instance['filter'] : 0); ?> />&nbsp;<label for="<?php echo $this->get_field_id('filter'); ?>"><?php _e('Automatically add paragraphs'); ?></label></p>
+<?php echo print_r($instance); ?>
+			Add image
+			</a>
+		</td>
+		<td>
+			<input type="text" name="<?php echo $this->get_field_name('link1'); ?>" value="<?php echo esc_attr($instance['link1']); ?>" />
+			<input type="hidden" name="<?php echo $this->get_field_name('img1'); ?>" value="<?php echo esc_attr($instance['img1']); ?>">
+		</td>
+	</tr>
+	<tr>
+		<td><a class="add-image-button" href="#" id="link2">Add image</a></td>
+		<td>
+			<input type="text" name="<?php echo $this->get_field_name('link2'); ?>" value="<?php echo esc_attr($instance['link2']); ?>" >
+			<input type="hidden" name="<?php echo $this->get_field_name('img2'); ?>" value="<?php echo esc_attr($instance['img2']); ?>">
+		</td>
+	</tr>
+	<tr>
+		<td><a class="add-image-button" href="#" id="link3">Add image</a></td>
+		<td>
+			<input type="text" name="<?php echo $this->get_field_name('link3'); ?>" value="<?php echo esc_attr($instance['link3']); ?>" >
+			<input type="hidden" name="<?php echo $this->get_field_name('img2'); ?>" value="<?php echo esc_attr($instance['img2']); ?>">
+		</td>
+	</tr>
+</table>
+
 <?php
 	}
 }
