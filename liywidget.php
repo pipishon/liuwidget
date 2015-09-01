@@ -77,12 +77,17 @@ class LIY_Widget_Friedns extends WP_Widget {
 ?>
 		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></p>
+
 <table id="liuwidget-table">
 	<tr>
-		<td><a class="add-image-button" href="#" id="link1">
 
-<?php echo print_r($instance); ?>
+		<td><a class="add-image-button" href="#" id="link1">
+            			
+	<?php if ($instance['img1']==''){ ?>
 			Add image
+	<?php } else { ?>
+		<img src="<?php echo wp_get_attachment_image_src($instance['img1'])[0];?>" />
+	<?php } ?>
 			</a>
 		</td>
 		<td>
@@ -91,17 +96,29 @@ class LIY_Widget_Friedns extends WP_Widget {
 		</td>
 	</tr>
 	<tr>
-		<td><a class="add-image-button" href="#" id="link2">Add image</a></td>
+		<td><a class="add-image-button" href="#" id="link2">
+			<?php if ($instance['img2']==''){ ?>
+					Add image
+			<?php } else { ?>
+				<img src="<?php echo wp_get_attachment_image_src($instance['img2'])[0];?>" />
+			<?php } ?>
+		</a></td>
 		<td>
 			<input type="text" name="<?php echo $this->get_field_name('link2'); ?>" value="<?php echo esc_attr($instance['link2']); ?>" >
 			<input type="hidden" name="<?php echo $this->get_field_name('img2'); ?>" value="<?php echo esc_attr($instance['img2']); ?>">
 		</td>
 	</tr>
 	<tr>
-		<td><a class="add-image-button" href="#" id="link3">Add image</a></td>
+		<td><a class="add-image-button" href="#" id="link3">
+			<?php if ($instance['img3']==''){ ?>
+					Add image
+			<?php } else { ?>
+				<img src="<?php echo wp_get_attachment_image_src($instance['img3'])[0];?>" />
+			<?php } ?>
+		</a></td>
 		<td>
 			<input type="text" name="<?php echo $this->get_field_name('link3'); ?>" value="<?php echo esc_attr($instance['link3']); ?>" >
-			<input type="hidden" name="<?php echo $this->get_field_name('img2'); ?>" value="<?php echo esc_attr($instance['img2']); ?>">
+			<input type="hidden" name="<?php echo $this->get_field_name('img3'); ?>" value="<?php echo esc_attr($instance['img3']); ?>">
 		</td>
 	</tr>
 </table>

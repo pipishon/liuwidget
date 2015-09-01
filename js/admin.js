@@ -7,13 +7,13 @@
         // Bind to our click event in order to open up the new media experience.
         jQuery(document).ready(function(){
            // jQuery('.liywidget-frame-show').hide();
-            jQuery('.add-image-button').click(function(e){
+            jQuery('.add-image-button').live('click',function(e){
                 e.preventDefault();
 		clicked_element=jQuery(this);
                  if ( liywidget_media_frame ) {
-                liywidget_media_frame.open();
+		     liywidget_media_frame.open();
                 return;
-            }
+		}
    	    
 
             liywidget_media_frame = wp.media.frames.liywidget_media_frame = wp.media({
