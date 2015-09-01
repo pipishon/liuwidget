@@ -9,16 +9,16 @@
            // jQuery('.liywidget-frame-show').hide();
             jQuery('.add-image-button').live('click',function(e){
                 e.preventDefault();
-		clicked_element=jQuery(this);
-                 if ( liywidget_media_frame ) {
-		     liywidget_media_frame.open();
-                return;
-		}
-   	    
+			clicked_element=jQuery(this);
+			 if ( liywidget_media_frame ) {
+			     liywidget_media_frame.open();
+			return;
+			}
+		    
 
-            liywidget_media_frame = wp.media.frames.liywidget_media_frame = wp.media({
-                className: 'media-frame liywidget-frame',
-                frame: 'select',
+		    liywidget_media_frame = wp.media.frames.liywidget_media_frame = wp.media({
+			className: 'media-frame liywidget-frame',
+			frame: 'select',
                 multiple: false,
                 title: 'title',
                 library: {

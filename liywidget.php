@@ -45,7 +45,50 @@ class LIY_Widget_Friedns extends WP_Widget {
 			<div class="textwidget"><?php echo !empty( $instance['filter'] ) ? wpautop( $text ) : $text; ?></div>
 		<?php
 		echo $args['after_widget'];*/
-		echo $instance['text'];
+		echo $instance['img1'];
+		?>
+<table id="liuwidget-table">
+	<tr>
+
+		<td><a class="add-image-button" href="<?php $instance['link1'] ?>" id="link1">
+            			
+	<?php if ($instance['img1']==''){ ?>
+			
+	<?php } else { ?>
+		<img src="<?php echo wp_get_attachment_image_src($instance['img1'])[0];?>" />
+	<?php } ?>
+			</a>
+		</td>
+		<td>
+			<a href="<?php echo $instance['link1'] ?>">link</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a class="add-image-button" href="<?php $instance['link2'] ?>" id="link2">
+			<?php if ($instance['img2']==''){ ?>
+					
+			<?php } else { ?>
+				<img src="<?php echo wp_get_attachment_image_src($instance['img2'])[0];?>" />
+			<?php } ?>
+		</a></td>
+		<td>
+			<a href="<?php echo $instance['link2'] ?>">link</a>
+		</td>
+	</tr>
+	<tr>
+		<td><a class="add-image-button" href="<?php $instance['link3'] ?>" id="link3">
+			<?php if ($instance['img3']==''){ ?>
+			
+			<?php } else { ?>
+				<img src="<?php echo wp_get_attachment_image_src($instance['img3'])[0];?>" />
+			<?php } ?>
+		</a></td>
+		<td>
+			<a href="<?php echo $instance['link3'] ?>">link</a>
+		</td>
+	</tr>
+</table>
+<?php
 	}
 
 	public function update( $new_instance, $old_instance ) {
